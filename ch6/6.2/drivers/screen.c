@@ -52,9 +52,9 @@ int _get_cursor() {
 void _set_cursor(int offset) {
     offset /= 2;
     outb(SCREEN_CTRL_PORT, 14);
-    outb(SCREEN_DATA_PORT, (uint8) ((offset >> 8) & 0xFF));
+    outb(SCREEN_DATA_PORT, (uint8_t) ((offset >> 8) & 0xFF));
     outb(SCREEN_CTRL_PORT, 15);
-    outb(SCREEN_DATA_PORT, (uint8) (offset & 0xFF));
+    outb(SCREEN_DATA_PORT, (uint8_t) (offset & 0xFF));
 }
 
 int _next_line(int offset) {

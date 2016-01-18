@@ -16,11 +16,11 @@ KERNEL_OFFSET equ 0x1000
     call switch_to_pm           ; Note that we never return here
     jmp $
 
-%include "load_disk.asm"
-%include "print.asm"
-%include "gdt.asm"
-%include "switch_to_pm.asm"
-%include "print_pm.asm"
+%include "load_disk.s"
+%include "print.s"
+%include "gdt.s"
+%include "switch_to_pm.s"
+%include "print_pm.s"
 
 [bits 16]
 load_kernel:
@@ -29,7 +29,7 @@ load_kernel:
     xor ax, ax
     mov es, ax
     mov bx, KERNEL_OFFSET       ; Load to ES:BX
-    mov dh, 4                   ; Number of sectors to load.
+    mov dh, 5                   ; Number of sectors to load.
     mov dl, [BOOT_DRIVE]
     mov cl, 0x02                ; Start from 2nd sector (after boot sector).
     call load_disk

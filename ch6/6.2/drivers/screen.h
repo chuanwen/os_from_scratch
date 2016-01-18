@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../kernel/low_level.h"
+#include "../kernel/io.h"
 
 #define SCREEN_CTRL_PORT 0x3D4
 #define SCREEN_DATA_PORT 0x3D5
@@ -9,10 +9,12 @@
 #define MAX_ROWS 25
 #define DEFAULT_COLOR 0x07
 
+/* functions start with k_ are exported ones */
 void k_print(char* msg);
 void k_set_cursor(int row, int col);
 void k_clear_screen();
 
+/* functions start with _ are for screen driver internal use */
 void _set_cursor(int offset);
 void _memcpy(char* dest, char* src, int size);
 int _get_cursor();
